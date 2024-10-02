@@ -201,8 +201,8 @@ function filterByExchange(stock, exchange) {
   return stock.exchange.toLowerCase() === exchange.toLowerCase();
 }
 
-app.get('/stocks/filter/exchange/:exchange', (req, res) => {
-  let exchange = req.params.exchange;
+app.get('/stocks/filter/exchange', (req, res) => {
+  let exchange = req.query.exchange;
   let filteredStocks = stocks.filter((stock) =>
     filterByExchange(stock, exchange)
   );
