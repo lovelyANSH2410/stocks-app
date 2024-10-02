@@ -213,8 +213,8 @@ function filterByIndustry(stock, industry) {
   return stock.industry === industry;
 }
 
-app.get('/stocks/filter/industry/:industry', (req, res) => {
-  let industry = req.params.industry;
+app.get('/stocks/filter/industry', (req, res) => {
+  let industry = req.query.industry;
   let filteredStocks = stocks.filter((stock) =>
     filterByIndustry(stock, industry)
   );
