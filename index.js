@@ -177,13 +177,21 @@ app.get('/stocks', (req, res) => {
   res.json({ stocks: stocks });
 });
 
-function sortByPrice(stock1, stock2) {
+function sortByPriceLowToHigh(stock1, stock2) {
   return stock1.price - stock2.price;
+}
+function sortByPriceHighToLow(stock1, stock2) {
+  return stock2.price - stock1.price;
 }
 
 app.get('/stocks/sort/pricing', (req, res) => {
+  let sortType = req.query.sortType;
   let stocksCopy = stocks.slice();
-  stocksCopy.sort(sortByPrice);
+  if(sortType.toLowerCase() === 'low-to-high') {
+    stocksCopy.sort(sortByPriceLowToHigh);
+  } else {
+    stocksCopy.sort(sortByPriceHighToLow)
+  }
   res.json({ stocks: stocksCopy });
 });
 
