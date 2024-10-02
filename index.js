@@ -184,8 +184,8 @@ function sortByPriceHighToLow(stock1, stock2) {
   return stock2.price - stock1.price;
 }
 
-app.get('/stocks/sort/pricing', (req, res) => {
-  let sortType = req.query.sortType;
+app.get('/stocks/sort/pricing/:pricing', (req, res) => {
+  let sortType = req.params.pricing;
   let stocksCopy = stocks.slice();
   if(sortType.toLowerCase() === 'low-to-high') {
     stocksCopy.sort(sortByPriceLowToHigh);
